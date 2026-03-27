@@ -10,6 +10,8 @@
         <class>fabriziopesaresi.entities.ElementoCatalogo</class>
         <class>fabriziopesaresi.entities.Libro</class>
         <class>fabriziopesaresi.entities.Rivista</class>
+        <class>fabriziopesaresi.entities.User</class>
+        <class>fabriziopesaresi.entities.Prestito</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ProgettoBE-U1-S3"/>
