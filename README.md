@@ -1,7 +1,8 @@
-Progetto Catalogo Bibliografico e Gestione Prestiti
-Analisi e Scelte Progettuali (ERD)
-Ereditarietà (JOINED Table): Ho utilizzato la strategia InheritanceType.JOINED per la classe ElementoCatalogo che permette di avere tabelle separate per Libro e Rivista, garantendo una migliore normalizzazione del database ed evitando colonne con valori nulli per i dati specifici.
+![Diagramma Database](./Screenshot 2026-03-27 161904.png)
+![Diagramma Database2](./Screenshot 2026-03-27 145749.png)
 
-Identificazione Univoca (ISBN): l'ho scelto come chiave primaria (String) per gli elementi del catalogo in modo da garantire l'univocità senza ricorrere a ID numerici autogenerati.
+Libro/Rivista --- Elementi_catalogo (1:1) ho collegamento 1 a 1 tramite ereditarietà per estendere i dati base con quelli specifici.
 
-Gestione Relazioni: la tabella Prestito collega Utenti e Catalogo tramite relazioni MTO. La data di restituzione prevista viene calcolata automaticamente a 30 giorni dalla data di inizio prestito nel costruttore della classe.
+Elementi_catalogo --- Prestiti (1:N): Un elemento del catalogo può comparire in più record di prestito nel tempo.
+
+Utenti --- Prestiti (1:N): Un utente può avere molteplici record di prestito a lui associati.

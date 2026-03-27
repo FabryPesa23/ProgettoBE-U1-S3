@@ -2,20 +2,21 @@ package fabriziopesaresi.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "prestiti")
 public class Prestito {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "utente_id")
     private User utente;
 
     @ManyToOne
-    @JoinColumn(name = "elemento_prestato_isbn")
+    @JoinColumn(name = "elemento_prestato_id")
     private ElementoCatalogo elementoPrestato;
 
     private LocalDate dataInizioPrestito;
@@ -28,14 +29,12 @@ public class Prestito {
         this.utente = utente;
         this.elementoPrestato = elemento;
         this.dataInizioPrestito = dataInizio;
-        // Calcolo automatico +30 giorni (punto 3 del README)
         this.dataRestituzionePrevista = dataInizio.plusDays(30);
     }
 
+    public UUID getId() { return id; }
     public User getUtente() { return utente; }
-    public void setUtente(User utente) { this.utente = utente; }
     public ElementoCatalogo getElementoPrestato() { return elementoPrestato; }
-    public void setElementoPrestato(ElementoCatalogo elemento) { this.elementoPrestato = elemento; }
     public LocalDate getDataInizioPrestito() { return dataInizioPrestito; }
     public LocalDate getDataRestituzionePrevista() { return dataRestituzionePrevista; }
     public LocalDate getDataRestituzioneEffettiva() { return dataRestituzioneEffettiva; }

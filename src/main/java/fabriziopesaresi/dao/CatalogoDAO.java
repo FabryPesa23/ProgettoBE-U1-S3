@@ -11,30 +11,28 @@ public class CatalogoDAO {
     public CatalogoDAO(EntityManager em) {
         this.em = em;
     }
-    
+
     public void save(ElementoCatalogo elemento) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(elemento);
         transaction.commit();
-        System.out.println("Elemento salvato: " + elemento.getTitolo());
+    }
+
+    public ElementoCatalogo findByIsbn(String isbn) {
+        return em.createQuery("SELECT e FROM ElementoCatalogo e WHERE e.isbn = :isbn", ElementoCatalogo.class)
+                .setParameter("isbn", isbn)
+                .getSingleResult();
     }
 
     public void deleteByIsbn(String isbn) {
-        ElementoCatalogo trovato = em.find(ElementoCatalogo.class, isbn);
+        ElementoCatalogo trovato = findByIsbn(isbn);
         if (trovato != null) {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
             em.remove(trovato);
             transaction.commit();
-            System.out.println("Elemento rimosso correttamente.");
-        } else {
-            System.out.println("Elemento con ISBN " + isbn + " non trovato.");
         }
-    }
-
-    public ElementoCatalogo findByIsbn(String isbn) {
-        return em.find(ElementoCatalogo.class, isbn);
     }
 
     public List<ElementoCatalogo> findByAnno(int anno) {

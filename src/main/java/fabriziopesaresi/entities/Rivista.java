@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 public class Rivista extends ElementoCatalogo {
-
     @Enumerated(EnumType.STRING)
     private Periodicita periodicita;
 
-    public Rivista() {
-    }
+    public Rivista() {}
 
     public Rivista(String isbn, String titolo, int anno, int pagine, Periodicita periodicita) {
         super(isbn, titolo, anno, pagine);

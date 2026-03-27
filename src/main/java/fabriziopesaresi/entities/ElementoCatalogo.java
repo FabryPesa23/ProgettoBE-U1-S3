@@ -1,6 +1,7 @@
 package fabriziopesaresi.entities;
 
 import jakarta.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -8,6 +9,10 @@ import jakarta.persistence.*;
 public abstract class ElementoCatalogo {
 
     @Id
+    @GeneratedValue
+    private UUID id;
+
+    @Column(unique = true, nullable = false)
     private String isbn;
 
     private String titolo;
@@ -24,19 +29,25 @@ public abstract class ElementoCatalogo {
         this.numeroPagine = numeroPagine;
     }
 
+    public UUID getId() { return id; }
+
     public String getIsbn() { return isbn; }
     public void setIsbn(String isbn) { this.isbn = isbn; }
+
     public String getTitolo() { return titolo; }
     public void setTitolo(String titolo) { this.titolo = titolo; }
+
     public int getAnnoPubblicazione() { return annoPubblicazione; }
     public void setAnnoPubblicazione(int annoPubblicazione) { this.annoPubblicazione = annoPubblicazione; }
+
     public int getNumeroPagine() { return numeroPagine; }
     public void setNumeroPagine(int numeroPagine) { this.numeroPagine = numeroPagine; }
 
     @Override
     public String toString() {
         return "ElementoCatalogo{" +
-                "isbn='" + isbn + '\'' +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
                 ", titolo='" + titolo + '\'' +
                 ", anno=" + annoPubblicazione +
                 ", pagine=" + numeroPagine +

@@ -4,12 +4,10 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Libro extends ElementoCatalogo {
-
     private String autore;
     private String genere;
 
-    public Libro() {
-    }
+    public Libro() {}
 
     public Libro(String isbn, String titolo, int anno, int pagine, String autore, String genere) {
         super(isbn, titolo, anno, pagine);

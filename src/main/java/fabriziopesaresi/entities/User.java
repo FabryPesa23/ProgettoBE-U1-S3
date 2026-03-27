@@ -2,13 +2,14 @@ package fabriziopesaresi.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "utenti")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    private UUID id;
 
     private String nome;
     private String cognome;
@@ -26,6 +27,7 @@ public class User {
         this.numeroTessera = numeroTessera;
     }
 
+    public UUID getId() { return id; }
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
     public String getCognome() { return cognome; }
